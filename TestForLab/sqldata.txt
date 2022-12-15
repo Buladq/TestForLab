@@ -1,0 +1,65 @@
+create table category
+(
+    id   serial
+        primary key,
+    name varchar(255)
+);
+
+alter table category
+    owner to postgres;
+
+create table country
+(
+    id   serial
+        primary key,
+    name varchar(255)
+);
+
+alter table country
+    owner to postgres;
+
+create table discount
+(
+    id      serial
+        primary key,
+    percent integer
+);
+
+alter table discount
+    owner to postgres;
+
+create table gift
+(
+    id   serial
+        primary key,
+    name varchar(255)
+);
+
+alter table gift
+    owner to postgres;
+
+create table product
+(
+    id       serial
+        primary key,
+    price    integer,
+    title    varchar(255),
+    category integer
+        constraint fkqx9wikktsev17ctu0kcpkrafc
+            references category
+            on delete set null,
+    country  integer
+        constraint fk3qrxvm7e46ov8dyheai71osx4
+            references country
+            on delete set null,
+    discount integer
+        constraint fkm7ys10nfv4sd4uhp0t29y07l
+            references discount,
+    gift     integer
+        constraint fkj1to6wbl1ibrgdayn5cmu1pgr
+            references gift
+);
+
+alter table product
+    owner to postgres;
+
